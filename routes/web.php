@@ -4,20 +4,17 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MessageController;
 use Illuminate\Support\Facades\Route;
 
-
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
 // Message page
 Route::middleware('auth')->group(function () {
-    Route::get('/dashboard/{id}', [MessageController::class, 'index'])->name('dashboard');
+    Route::get('/', [MessageController::class, 'index'])->name('chat');
+    Route::get('/chat/{id}', [MessageController::class, 'chatWith'])->name('chat.with');
     Route::post('/send/message', [MessageController::class, 'store'])->name('message.store');
 });
 
 
 Route::middleware('auth')->group(function () {
+    Route::get('/my-profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::post('/my-profile', [ProfileController::class, 'profilePicture'])->name('profile.picture');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

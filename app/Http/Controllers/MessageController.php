@@ -14,10 +14,30 @@ use Illuminate\Support\Facades\DB;
 
 class MessageController extends Controller
 {
-    public function index($id)
+    public function index()
     {
 
+        $authId = Auth::id();
 
+        // Fetch users except the current user
+        $users = User::where('id', '!=', $authId)->get();
+
+        $users = $users->map(function ($user) use ($authId) {
+            $lastMessage = Message::where('sender_id', $user->id)
+                ->where('receiver_id', $authId)
+                ->latest('created_at')
+                ->first();
+
+            $user->last_message = $lastMessage ? $lastMessage->message : null;
+            return $user;
+        });
+
+
+        return view('chat', compact('users'));
+    }
+
+    public function chatWith($id)
+    {
 
         $authId = Auth::id();
 
@@ -56,7 +76,7 @@ class MessageController extends Controller
             ->each->markAsRead();
 
 
-        return view('dashboard', compact('users', 'chatWith', 'messages'));
+        return view('chat', compact('users', 'chatWith', 'messages'));
     }
 
     // SEND MESSAGE

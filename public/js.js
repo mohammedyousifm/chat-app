@@ -36,3 +36,19 @@
                 });
             });
         });
+
+$(document).ready(function () {
+    $('#menuButton').click(function () {
+        // Toggle the sidebar with animation
+        $('#Sidebar').toggle(500);
+
+        // Toggle the icon class
+        const icon = $('#menuButtonIcon');
+
+        if (icon.hasClass('fa-bars')) {
+            icon.removeClass('fa-bars').addClass('fa-x');
+        } else {
+            icon.removeClass('fa-x').addClass('fa-bars');
+        }
+    });
+});

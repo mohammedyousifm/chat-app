@@ -1,0 +1,16 @@
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+header .profile {
+    padding: 5px;
+    background-color: black;
+    border-radius: 5px;
+}
+
+@media screen and (max-width: 1100px) {
+    #Sidebar {
+        display: none;
+    }
+}
