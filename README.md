@@ -34,17 +34,19 @@ Follow the steps below to clone and run the project locally:
 
 ### 1. Clone the Repository
 
-`````bash
+```bash
 git clone https://github.com/your-username/chat-app.git
 cd chat-app
 
+```
+
 ### 2. Install Dependencies
 
-````bash
+```bash
 composer install
 npm install && npm run dev
 
-`````
+```
 
 ### 3. Configure Environment
 
