@@ -34,7 +34,62 @@ Follow the steps below to clone and run the project locally:
 
 ### 1. Clone the Repository
 
-```bash
+`````bash
 git clone https://github.com/your-username/chat-app.git
 cd chat-app
+
+### 2. Install Dependencies
+
+````bash
+composer install
+npm install && npm run dev
+
+`````
+
+### 3. Configure Environment
+
+```bash
+cp .env.example .env
+
+```
+
+### 4. Then edit .env and set:
+
+````bash
+APP_NAME="Chat Web"
+APP_URL=http://localhost
+
+# DB
+```bash
+DB_DATABASE=chat_app
+DB_USERNAME=root
+DB_PASSWORD=
+
+# Broadcasting
+```bash
+BROADCAST_DRIVER=pusher
+
+```bash
+PUSHER_APP_ID=your_app_id
+PUSHER_APP_KEY=your_app_key
+PUSHER_APP_SECRET=your_app_secret
+PUSHER_HOST=
+PUSHER_PORT=443
+PUSHER_SCHEME=https
+PUSHER_APP_CLUSTER=mt1
+
+````
+
+### 5. Generate App Key
+
+```bash
+php artisan key:generate
+
+```
+
+### 6. Run Migrations & Seeders
+
+```bash
+php artisan migrate --seed
+
 ```
