@@ -1,9 +1,9 @@
 import Echo from 'laravel-echo';
 import Pusher from 'pusher-js';
 
-Pusher.logToConsole = true;
+Pusher.logToConsole = false;
 window.Pusher = Pusher;
-
+  console.log('Yes  working');
 window.Echo = new Echo({
     broadcaster: "pusher",
     key: import.meta.env.VITE_PUSHER_APP_KEY,
@@ -18,9 +18,11 @@ window.Echo = new Echo({
 
 window.Echo.channel('send_message')
     .listen('.SendMessageEvent', (e) => {
-        console.log('Yes event working', e.message);
+        console.log('Yes event working');
           $("#chatMessages").load(" #chatMessages >*");
           $("#newMessageNotification").load(" #newMessageNotification >*")
+          $("#showNotification").load(" #showNotification >*");
+          $("#notificationIconModel").load(" #notificationIconModel >*")
 
            var chatBox = document.getElementById("chatMessages");
             chatBox.scrollTop = chatBox.scrollHeight;

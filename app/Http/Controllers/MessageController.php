@@ -23,14 +23,23 @@ class MessageController extends Controller
         $users = User::where('id', '!=', $authId)->get();
 
         $users = $users->map(function ($user) use ($authId) {
-            $lastMessage = Message::where('sender_id', $user->id)
-                ->where('receiver_id', $authId)
+            $lastMessage = Message::where(function ($query) use ($user, $authId) {
+                $query->where('sender_id', $user->id)
+                    ->where('receiver_id', $authId);
+            })
+                ->orWhere(function ($query) use ($user, $authId) {
+                    $query->where('sender_id', $authId)
+                        ->where('receiver_id', $user->id);
+                })
                 ->latest('created_at')
                 ->first();
 
-            $user->last_message = $lastMessage ? $lastMessage->message : null;
+            // ✅ Store the full message model
+            $user->last_message = $lastMessage;
+
             return $user;
         });
+
 
 
         return view('chat', compact('users'));
@@ -50,7 +59,9 @@ class MessageController extends Controller
                 ->latest('created_at')
                 ->first();
 
-            $user->last_message = $lastMessage ? $lastMessage->message : null;
+
+            $user->last_message = $lastMessage;
+
             return $user;
         });
 

@@ -9,6 +9,18 @@ header .profile {
     border-radius: 5px;
 }
 
+/* NotificationSidebar */
+#NotificationSidebar {
+    background-color: rgb(244, 244, 244);
+    display: none;
+    position: fixed;
+    width: 300px;
+    height: 100vh;
+    top: 0;
+    right: 0;
+    z-index: 1000000;
+}
+
 @media screen and (max-width: 1100px) {
     #Sidebar {
         display: none;

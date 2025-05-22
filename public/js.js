@@ -1,13 +1,18 @@
-        $(document).ready(function () {
-            // CSRF Token setup for AJAX
-            $.ajaxSetup({
+
+//
+//
+//
+//
+$(document).ready(function () {
+     // CSRF Token setup for AJAX
+     $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
-            });
+        });
 
             // SEND MESSAGE
-            $('#sendMessage').click(function (e) {
+        $('#sendMessage').click(function (e) {
                 e.preventDefault(); // Prevent default form submission
 
                 const receiver_id = $('#receiver_id').val();
@@ -35,8 +40,11 @@
                     }
                 });
             });
-        });
+});
 
+//
+//
+//
 $(document).ready(function () {
     $('#menuButton').click(function () {
         // Toggle the sidebar with animation
@@ -52,3 +60,20 @@ $(document).ready(function () {
         }
     });
 });
+
+//
+//
+//
+$(document).ready(function () {
+            // Show the Notification
+    $('#showNotification').click(function () {
+        $('#NotificationSidebar').show(500);
+    });
+            // hide the Notification
+        $('#NotificationSidebarIcon').click(function () {
+        $('#NotificationSidebar').hide(500);
+    });
+});
+
+
+

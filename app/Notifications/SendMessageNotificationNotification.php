@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use App\Models\User;
 
 class SendMessageNotificationNotification extends Notification
 {
@@ -42,9 +43,11 @@ class SendMessageNotificationNotification extends Notification
      */
     public function toArray(object $notifiable): array
     {
+        $sender = User::find($this->sender_id);
+        $senderName = $sender ? $sender->name : 'Unknown User';
         return [
             'sender_id' => $this->sender_id,
-            'message' => 'new message: ' . $this->message->message
+            'message' =>  $senderName . ': ' . $this->message->message,
         ];
     }
 }

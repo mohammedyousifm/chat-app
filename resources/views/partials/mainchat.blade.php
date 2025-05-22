@@ -19,7 +19,12 @@
         </div>
 
         <div class="flex">
-            <i class="fa-solid pt-2 pr-5 fa-bell"></i>
+
+
+
+            @include('partials.notification')
+
+
             <div class="w-8 h-8 rounded-full overflow-hidden bg-gray-200">
                 <a href="{{ route('profile.index') }}"><img id="nav-profile-pic"
                         src="{{ asset('storage/' . Auth::user()->imagePath) }}" alt="Profile"

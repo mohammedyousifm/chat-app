@@ -28,7 +28,15 @@
                                     <i class="fa-solid pt-2 fa-bell"></i>
                                 @endif
                             </div>
-                            <p class="text-gray-600"> {{ $user->last_message ?? 'No messages yet' }}</p>
+                            @if($user->last_message)
+                                <div class="flex">
+                                    <p class="text-gray-600"> {{ $user->last_message->message }}</p>
+                                    <span class="pt-3" style="font-size: 10px">
+                                        {{ $user->last_message->created_at->diffForHumans() }}
+
+                                    </span>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </a>
